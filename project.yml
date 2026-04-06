@@ -1,0 +1,49 @@
+name: DotEdit
+options:
+  bundleIdPrefix: com.dotedit
+  deploymentTarget:
+    macOS: "15.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MACOSX_DEPLOYMENT_TARGET: "15.0"
+targets:
+  DotEdit:
+    type: application
+    platform: macOS
+    sources:
+      - DotEdit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dotedit.app
+        PRODUCT_NAME: DotEdit
+        INFOPLIST_GENERATION_MODE: GeneratedFile
+        CODE_SIGN_ENTITLEMENTS: DotEdit/DotEdit.entitlements
+        GENERATE_INFOPLIST_FILE: "YES"
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: 1
+  DotEditTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - DotEditTests
+    dependencies:
+      - target: DotEdit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.dotedit.tests
+        GENERATE_INFOPLIST_FILE: "YES"
+schemes:
+  DotEdit:
+    build:
+      targets:
+        DotEdit: all
+        DotEditTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - DotEditTests
